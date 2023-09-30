@@ -9,6 +9,7 @@ namespace ReservaHotel.Controllers;
 [Route("[controller]")]
 public class ServicoController : ControllerBase
 {
+
     private readonly ILogger<ServicoController> _logger;
     private readonly BDContext _dbContext;
 
@@ -17,7 +18,6 @@ public class ServicoController : ControllerBase
         _dbContext = dbContext;
         _logger = logger;
     }
-
 
 
     

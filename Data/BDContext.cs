@@ -8,6 +8,7 @@ namespace ReservaHotel.Data
         public DbSet<Cliente>? Clientes { get; set; }
         public DbSet<Servico>? Servicos { get; set; }
         public DbSet<Pacote>? Pacotes { get; set; }
+        public DbSet<Quarto> Quartos {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

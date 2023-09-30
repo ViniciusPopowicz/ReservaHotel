@@ -49,6 +49,23 @@ namespace ReservaHotel.Migrations
                     b.ToTable("Pacotes");
                 });
 
+            modelBuilder.Entity("ReservaHotel.Models.Quarto", b =>
+                {
+                    b.Property<int>("nroQuarto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("nroHospedes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("valor")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("nroQuarto");
+
+                    b.ToTable("Quartos");
+                });
+
             modelBuilder.Entity("ReservaHotel.Models.Servico", b =>
                 {
                     b.Property<int>("IdServico")
