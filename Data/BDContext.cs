@@ -17,9 +17,12 @@ namespace ReservaHotel.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Pacote>()
-                .HasMany(p => p.Servicos)
-                .WithOne();
+            // modelBuilder.Entity<Pacote>()
+            //     .HasMany(p => p.Servicos);
+
+                modelBuilder.Entity<Servico>()
+                .HasMany(s => s.Pacotes);
+
 
         }
     }

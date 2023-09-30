@@ -142,7 +142,7 @@ namespace ReservaHotel.Controllers
             if (pacoteBusca is null) return NotFound();
 
             // Exclua os serviços associados manualmente
-            _dbContext.Servicos.RemoveRange(pacoteBusca.Servicos);
+            //_dbContext.Servicos.RemoveRange(pacoteBusca.Servicos);
 
             _dbContext.Remove(pacoteBusca);
             await _dbContext.SaveChangesAsync();
