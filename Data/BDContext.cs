@@ -12,6 +12,9 @@ namespace ReservaHotel.Data
         public DbSet<Reserva>? Reservas {get; set;}
         public DbSet<Voucher>? Vouchers {get; set;}
         public DbSet<Hotel>? Hotels {get; set;}
+        public DbSet<Premio>? Premios {get; set;}
+        public DbSet<Pagamento>? Pagamentos {get; set;}
+        public DbSet<Recibo>? Recibos {get; set;}
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,15 +24,16 @@ namespace ReservaHotel.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Servico>().HasMany(p => p.Pacotes);
+            modelBuilder.Entity<Servico>().HasMany(s => s.Pacotes);
             modelBuilder.Entity<Pacote>().HasMany(p => p.Servicos);
-            modelBuilder.Entity<Reserva>().HasOne(p => p.Quarto);
-            modelBuilder.Entity<Reserva>().HasOne(p => p.Hotel);
-            modelBuilder.Entity<Reserva>().HasOne(p => p.Pacote);
-            modelBuilder.Entity<Reserva>().HasOne(p => p.Cliente);
-            modelBuilder.Entity<Reserva>().HasOne(p => p.Voucher);
-            
-
+            modelBuilder.Entity<Reserva>().HasOne(r => r.Quarto);
+            modelBuilder.Entity<Reserva>().HasOne(r => r.Hotel);
+            modelBuilder.Entity<Reserva>().HasOne(r => r.Pacote);
+            modelBuilder.Entity<Reserva>().HasOne(r => r.Cliente);
+            modelBuilder.Entity<Reserva>().HasOne(r => r.Voucher);
+            modelBuilder.Entity<Pagamento>().HasOne(p => p.Reserva);
+            modelBuilder.Entity<Recibo>().HasOne(rec => rec.Pagamento);
+            modelBuilder.Entity<Recibo>().HasOne(rec => rec.Premio);
         }
     }
 }
