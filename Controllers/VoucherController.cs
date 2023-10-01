@@ -80,7 +80,7 @@ public class VoucherController : ControllerBase
     public async Task<ActionResult> Excluir(int idVoucher)
     {
         if (_dbContext is null) return NotFound();
-        if (_dbContext.Servicos is null) return NotFound();
+        if (_dbContext.Vouchers is null) return NotFound();
 
         var VoucherBusca = await _dbContext.Vouchers.FindAsync(idVoucher);
         if (VoucherBusca is null) return NotFound();

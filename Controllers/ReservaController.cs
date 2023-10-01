@@ -127,8 +127,8 @@ public class ReservaController : ControllerBase
             return NoContent();
         }
 
-        private bool ReservaExists(int id)
-        {
-            return _dbContext.Reservas.Any(e => e.IdReserva == id);
-        }
+        // private bool ReservaExists(int id)
+        // {
+        //     return _dbContext.Reservas.Any(e => e.IdReserva == id);
+        // }
 }
