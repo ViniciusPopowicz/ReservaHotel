@@ -78,12 +78,12 @@ public class QuartoController : ControllerBase
 
     [HttpDelete]
     [Route("excluir/{nroQuarto}")]
-    public async Task<ActionResult> Excluir(int NroQuarto)
+    public async Task<ActionResult> Excluir(int nroQuarto)
     {
         if (_dbContext is null) return NotFound();
         if (_dbContext.Quartos is null) return NotFound();
 
-        var quartoBusca = await _dbContext.Quartos.FindAsync(NroQuarto);
+        var quartoBusca = await _dbContext.Quartos.FindAsync(nroQuarto);
         if (quartoBusca is null) return NotFound();
 
         _dbContext.Remove(quartoBusca);

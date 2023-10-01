@@ -2,6 +2,7 @@ using ReservaHotel.Data;
 using ReservaHotel.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace ReservaHotel.Controllers
 {
@@ -25,37 +26,43 @@ namespace ReservaHotel.Controllers
             if (_dbContext is null) return NotFound();
             if (idsServicos == null || idsServicos.Count == 0) return BadRequest("A lista de serviços está vazia.");
 
-            // criando a lista de serviços que o Pacote ira incluir.
             var servicosDoPacote = new List<Servico>();
-            //criando a classe Pacote que sera inserida no banco.
             var pacote = new Pacote();
 
-            //percorrendo a lista passada por json no swagger
             foreach (var idServico in idsServicos)
             {
-                // pegando os objetos Servico baseado XD na lista passada por json
-                var servicoExistente = await _dbContext.Servicos.FindAsync(idServico);
-
-                if (servicoExistente == null)
-                {
-                    return NotFound($"O serviço com ID {idServico} não foi encontrado.");
+                var servico = await _dbContext.Servicos.FindAsync(idServico);
+                if(servico != null){
+                    servicosDoPacote.Add(servico);
                 }
 
-                //adicionando o servico passado no json ao objeto pacote criado no começo do metodo
-                servicosDoPacote.Add(servicoExistente);
+                pacote.ValorPacote += servico.ValorServico;
 
-                //acessa o valor do pacote que sera o valor somado de todos os servicos adicionados
-                pacote.ValorPacote += servicoExistente.ValorServico;
-            }        
-                //passando a lista de serviso para o objeto pacote
-                pacote.Servicos = servicosDoPacote;
+
+            }
+
+            pacote.Servicos = servicosDoPacote;
             
 
-            //adicionando e salavando as mudançda nos banco
             await _dbContext.AddAsync(pacote);
+
+             
             await _dbContext.SaveChangesAsync();
 
-            return Created("", pacote);
+            foreach(Servico servicoPacote in servicosDoPacote){
+                servicoPacote.Pacotes.Add(pacote);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            var json = JsonConvert.SerializeObject(pacote, settings);
+
+            return Content(json, "application/json");
         }
 
 
@@ -65,33 +72,48 @@ namespace ReservaHotel.Controllers
 
         [HttpGet]
         [Route("listar")]
-        public async Task<ActionResult<IEnumerable<Pacote>>> Listar()
+        public async Task<ActionResult<IEnumerable<PacoteViewModel>>> Listar()
         {
             if (_dbContext is null) return NotFound();
             
-            // o include é necessario pq o EF nao iria incluir na consulta os obejtos Servico
-            //duvida, se o obejto servico tivesse mais um obejto como atributo, como seria o include do include??
-            // algo assim?
-            //  _dbContext.lista1.Include(_dbContext => _dbContext.lista2.Include(_dbContext => _dbContext.lista3))ToListAsync();
-            return await _dbContext.Pacotes.Include(_dbContext => _dbContext.Servicos).ToListAsync();
+            var pacotes = await _dbContext.Pacotes.Include(p => p.Servicos).ToListAsync();
+
+            // Mapeia os pacotes para a ViewModel
+            var pacotesViewModel = pacotes.Select(pacote => new PacoteViewModel
+            {
+                IdPacote = pacote.IdPacote,
+                Servicos = pacote.Servicos.Select(servico => servico.IdServico).ToList(),
+                ValorPacote = pacote.ValorPacote
+            }).ToList();
+
+            return Ok(pacotesViewModel);
         }
+
+
+
+
 
         [HttpGet]
         [Route("buscar/{id}")]
-        public async Task<ActionResult<Pacote>> Buscar(int id)
+        public async Task<ActionResult<PacoteViewModel>> Buscar(int id)
         {
             if (_dbContext is null) return NotFound();
-            
-            // o metodo FirstOrDefaultAsync faz com que o obejto a ser incluidfo sera o primeiro obejto encontrado com o id forncedio
-            //como usamos a annotation key acho q n fara diferença tira-lo, mas o bard fez assim
-            // tirei e deu erro com o findasync
-            //nao sei pq
+                    
             var pacoteBusca = await _dbContext.Pacotes.Include(p => p.Servicos).FirstOrDefaultAsync(p => p.IdPacote == id);
-            
+                    
             if (pacoteBusca is null) return NotFound();
 
-            return pacoteBusca;
+            // Mapear os dados do pacote encontrado para PacoteViewModel
+            var pacoteViewModel = new PacoteViewModel
+            {
+                IdPacote = pacoteBusca.IdPacote,
+                Servicos = pacoteBusca.Servicos.Select(s => s.IdServico).ToList(),
+                ValorPacote = pacoteBusca.ValorPacote
+            };
+
+            return Ok(pacoteViewModel);
         }
+
 
 
 

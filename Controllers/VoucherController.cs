@@ -43,12 +43,12 @@ public class VoucherController : ControllerBase
 
     [HttpGet]
     [Route("buscar/{idVoucher}")]
-    public async Task<ActionResult<Voucher>> Buscar(int IdVoucher)
+    public async Task<ActionResult<Voucher>> Buscar(int idVoucher)
     {
         if (_dbContext is null) return NotFound();
         if (_dbContext.Vouchers is null) return NotFound();
 
-        var VoucherBusca = await _dbContext.Vouchers.FindAsync(IdVoucher);
+        var VoucherBusca = await _dbContext.Vouchers.FindAsync(idVoucher);
         if (VoucherBusca is null) return NotFound();
 
         return VoucherBusca;

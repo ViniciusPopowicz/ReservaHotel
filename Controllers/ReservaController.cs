@@ -53,7 +53,6 @@ public class ReservaController : ControllerBase
         .Include(_dbContext => _dbContext.Quarto)
         .Include(_dbContext => _dbContext.Hotel)
         .Include(_dbContext => _dbContext.Pacote)
-        .Include(r => r.Pacote.Servicos)
         .Include(_dbContext => _dbContext.Cliente)
         .Include(_dbContext => _dbContext.Voucher).ToListAsync();
     }
@@ -70,7 +69,6 @@ public class ReservaController : ControllerBase
         .Include(r => r.Quarto)
         .Include(r => r.Hotel)
         .Include(r => r.Pacote)
-        .Include(r => r.Pacote.Servicos)
         .Include(r => r.Cliente)
         .Include(r => r.Voucher)
         .FirstOrDefaultAsync(r => r.IdReserva == idReserva);
@@ -84,13 +82,17 @@ public class ReservaController : ControllerBase
 
 
     [HttpPut()]
-    [Route("alterar")]
-    public async Task<IActionResult> Alterar(int idReserva, string dataReserva, string dataCheckIn, string dataCheckOut, int idQuarto, int idHotel, int idPacote, string idCliente, int idVoucher)
+    [Route("alterar/{idReserva}")]
+    public async Task<IActionResult> Alterar(int idReserva, string dataReserva, string dataCheckIn, 
+    string dataCheckOut, int idQuarto, int idHotel, int idPacote, string idCliente, int idVoucher)
     {
         if (_dbContext is null) return NotFound();
         if (_dbContext.Reservas is null) return NotFound();
 
         var reserva = await _dbContext.Reservas.FindAsync(idReserva);
+        reserva.DataReserva = dataReserva;
+        reserva.DataCheckIn = dataCheckIn;
+        reserva.DataCheckOut = dataCheckOut;
         reserva.Quarto = await _dbContext.Quartos.FindAsync(idQuarto);
         reserva.Hotel = await _dbContext.Hotels.FindAsync(idHotel);
         reserva.Pacote = await _dbContext.Pacotes.FindAsync(idPacote);
