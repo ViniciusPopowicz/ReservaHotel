@@ -1,0 +1,143 @@
+# Documentação do Programa ReservaHotel
+
+## Visão Geral
+O programa ReservaHotel é uma aplicação de gerenciamento de reservas em hotéis. Ele permite que os usuários cadastrem, consultem, atualizem e excluam informações sobre hotéis, quartos, serviços, reservas, vouchers, prêmios e recibos.
+
+## Classes Principais
+
+### `BDContext`
+- Descrição: Esta classe representa o contexto do banco de dados e é usada para interagir com o banco de dados.
+- Métodos Principais:
+  - `AddAsync(entity)`: Adiciona uma entidade ao contexto do banco de dados.
+  - `SaveChangesAsync()`: Salva todas as alterações pendentes no banco de dados.
+
+### `HotelController`
+- Descrição: Este controlador lida com operações relacionadas a hotéis.
+- Métodos Principais:
+  - `Cadastrar(hotel)`: Cadastra um novo hotel.
+  - `Listar()`: Lista todos os hotéis cadastrados.
+  - `Buscar(idHotel)`: Busca um hotel pelo ID.
+  - `Alterar(hotel)`: Atualiza informações de um hotel.
+  - `Excluir(idHotel)`: Exclui um hotel.
+
+### `QuartoController`
+- Descrição: Este controlador lida com operações relacionadas a quartos.
+- Métodos Principais:
+  - `Cadastrar(quarto)`: Cadastra um novo quarto.
+  - `Listar()`: Lista todos os quartos cadastrados.
+  - `Buscar(nroQuarto)`: Busca um quarto pelo número.
+  - `Alterar(quarto)`: Atualiza informações de um quarto.
+  - `Excluir(nroQuarto)`: Exclui um quarto.
+
+### `ServicoController`
+- Descrição: Este controlador lida com operações relacionadas a serviços.
+- Métodos Principais:
+  - `Cadastrar(descricao, valorServico)`: Cadastra um novo serviço.
+  - `Listar()`: Lista todos os serviços cadastrados.
+  - `Buscar(id)`: Busca um serviço pelo ID.
+  - `Alterar(id, descricao, valorServico)`: Atualiza informações de um serviço.
+  - `Excluir(id)`: Exclui um serviço.
+
+### `PacoteController`
+- Descrição: Este controlador lida com operações relacionadas a pacotes.
+- Métodos Principais:
+  - `Cadastrar(idsServicos)`: Cadastra um novo pacote com base em uma lista de IDs de serviços.
+  - `Listar()`: Lista todos os pacotes cadastrados.
+  - `Buscar(id)`: Busca um pacote pelo ID.
+  - `Alterar(id, servicosIds)`: Atualiza os serviços de um pacote.
+  - `Excluir(id)`: Exclui um pacote.
+
+### `VoucherController`
+- Descrição: Este controlador lida com operações relacionadas a vouchers.
+- Métodos Principais:
+  - `Cadastrar(voucher)`: Cadastra um novo voucher.
+  - `Listar()`: Lista todos os vouchers cadastrados.
+  - `Buscar(idVoucher)`: Busca um voucher pelo ID.
+  - `Alterar(voucher)`: Atualiza informações de um voucher.
+  - `Excluir(idVoucher)`: Exclui um voucher.
+
+### `ClienteController`
+- Descrição: Este controlador lida com operações relacionadas a clientes.
+- Métodos Principais:
+  - `Cadastrar(cliente)`: Cadastra um novo cliente.
+  - `Listar()`: Lista todos os clientes cadastrados.
+  - `Buscar(idCliente)`: Busca um cliente pelo ID.
+  - `Alterar(cliente)`: Atualiza informações de um cliente.
+  - `Excluir(idCliente)`: Exclui um cliente.
+
+### `ReservaController`
+- Descrição: Este controlador lida com operações relacionadas a reservas.
+- Métodos Principais:
+  - `Cadastrar(dataReserva, dataCheckIn, dataCheckOut, idQuarto, idHotel, idPacote, idCliente, idVoucher)`: Cadastra uma nova reserva.
+  - `Listar()`: Lista todas as reservas cadastradas.
+  - `Buscar(idReserva)`: Busca uma reserva pelo ID.
+  - `Alterar(idReserva, dataReserva, dataCheckIn, dataCheckOut, idQuarto, idHotel, idPacote, idCliente, idVoucher)`: Atualiza informações de uma reserva.
+  - `Excluir(idReserva)`: Exclui uma reserva.
+
+### `ReciboController`
+- Descrição: Este controlador lida com operações relacionadas a recibos.
+- Métodos Principais:
+  -
+
+ `Cadastrar(idRecibo, idPagamento)`: Cadastra um novo recibo com base em um pagamento.
+  - `Listar()`: Lista todos os recibos cadastrados.
+  - `Buscar(idRecibo)`: Busca um recibo pelo ID.
+  - `Alterar(recibo)`: Atualiza informações de um recibo.
+  - `Excluir(idRecibo)`: Exclui um recibo.
+
+### `PremioController`
+- Descrição: Este controlador lida com operações relacionadas a prêmios.
+- Métodos Principais:
+  - `Cadastrar(premio)`: Cadastra um novo prêmio.
+  - `Listar()`: Lista todos os prêmios cadastrados.
+  - `Buscar(idPremio)`: Busca um prêmio pelo ID.
+  - `Alterar(premio)`: Atualiza informações de um prêmio.
+  - `Excluir(idPremio)`: Exclui um prêmio.
+
+## Uso
+O programa ReservaHotel é uma API que pode ser usada para gerenciar informações de hotéis, quartos, serviços, reservas e muito mais. Os endpoints da API podem ser acessados para realizar operações CRUD (Create, Read, Update, Delete) em diferentes entidades relacionadas a hotéis e reservas.
+
+## Considerações Finais
+Este é um resumo simples da estrutura do programa ReservaHotel. Para informações detalhadas sobre como usar a API e seus endpoints específicos, consulte a documentação oficial ou o código-fonte do programa.
+
+**Nota:** Certifique-se de configurar corretamente o ambiente e o banco de dados antes de executar o programa.
+
+
+
+
+
+
+O ciclo de vida do programa ReservaHotel é um processo contínuo que descreve como as principais operações e processos ocorrem desde o início até o término do uso do sistema. Aqui está uma mini explicação do ciclo de vida do programa:
+
+1. **Início do Programa:**
+   - O programa ReservaHotel é iniciado, e os controladores e modelos são carregados na memória.
+
+2. **Cadastro de Dados:**
+   - Os usuários podem começar cadastrando dados essenciais, como clientes, hotéis, quartos de hotel, serviços, vouchers de desconto e prêmios.
+   - Os dados são inseridos no banco de dados por meio dos controladores correspondentes.
+
+3. **Reservas de Hotel:**
+   - Os clientes podem criar reservas de hotel especificando a data de reserva, datas de check-in e check-out, escolhendo quartos de hotel e pacotes de serviços e aplicando vouchers de desconto, se aplicável.
+   - O valor da reserva é calculado com base nas escolhas feitas pelo cliente.
+
+4. **Pagamentos:**
+   - Os clientes fazem pagamentos pelas reservas criadas, especificando o método de pagamento.
+   - Os pagamentos e recibos correspondentes são registrados no sistema.
+
+5. **Atualização e Gerenciamento:**
+   - Os usuários podem atualizar informações existentes, como detalhes de clientes, informações de quartos de hotel, pacotes de serviços, vouchers de desconto e prêmios.
+   - As atualizações são refletidas no banco de dados por meio dos controladores apropriados.
+
+6. **Consulta de Dados:**
+   - Os usuários podem consultar informações sobre reservas de hotel, hotéis, quartos, pacotes de serviços, vouchers, prêmios e clientes.
+   - As consultas são atendidas pelos controladores correspondentes, que retornam os dados relevantes.
+
+7. **Exclusão de Dados:**
+   - Os dados podem ser excluídos do sistema, incluindo reservas, clientes, hotéis, quartos, pacotes de serviços, vouchers, prêmios, pagamentos e recibos.
+   - As exclusões são realizadas pelos controladores apropriados.
+
+8. **Encerramento do Programa:**
+   - Os usuários concluem suas interações com o programa ReservaHotel.
+   - O programa pode ser encerrado, e quaisquer alterações são salvas no banco de dados.
+
+Este ciclo de vida ilustra como os principais processos do programa se interconectam para oferecer aos usuários a capacidade de criar e gerenciar reservas de hotel e serviços relacionados. É um processo contínuo que permite aos usuários aproveitar ao máximo o sistema.
