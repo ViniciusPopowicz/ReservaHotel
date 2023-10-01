@@ -21,12 +21,14 @@ namespace ReservaHotel.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Servico>().HasMany(p => p.Pacotes);
             modelBuilder.Entity<Pacote>().HasMany(p => p.Servicos);
             modelBuilder.Entity<Reserva>().HasOne(p => p.Quarto);
             modelBuilder.Entity<Reserva>().HasOne(p => p.Hotel);
             modelBuilder.Entity<Reserva>().HasOne(p => p.Pacote);
             modelBuilder.Entity<Reserva>().HasOne(p => p.Cliente);
             modelBuilder.Entity<Reserva>().HasOne(p => p.Voucher);
+            
 
         }
     }
