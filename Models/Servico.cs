@@ -10,17 +10,28 @@ public class Servico
     public int IdServico { get; set; }
 
     public string Descricao { get; set; }
+    public List<Pacote> Pacotes { get; set; }
 
     public float ValorServico { get; set; }
+
 
     public Servico()
     {
     }
 
-    public Servico(int idServico, string descricao, float valorServico)
+    public Servico(int idServico, string descricao, List<Pacote> pacotes,float valorServico)
     {
         this.IdServico = idServico;
+        this.Pacotes = pacotes;
         this.Descricao = descricao;
         this.ValorServico = valorServico;
+    }
+
+
+    public String toString(){
+
+        
+
+        return "" + this.IdServico + " " + this.Descricao + " " + this.Pacotes.ToString() + " " +this.ValorServico;
     }
 }

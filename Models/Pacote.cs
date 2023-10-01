@@ -9,7 +9,7 @@ namespace ReservaHotel.Models;
         [Key]
         public int IdPacote { get; set; }
 
-        public virtual ICollection<Servico> Servicos { get; set; }
+        public List<Servico> Servicos { get; set; }
 
         public float ValorPacote { get; set; }
 
