@@ -12,14 +12,12 @@ namespace ReservaHotel.Controllers;
 [Route("[controller]")]
 public class ClienteController : ControllerBase
 {
-    private readonly ILogger<ClienteController> _logger;
     // Cria o atributo que ira realizar as operações de banco
     private BDContext _dbContext;
 
 
     public ClienteController(BDContext dbContext,ILogger<ClienteController> logger)
     {
-        _logger = logger;
         _dbContext = dbContext;
     }
 

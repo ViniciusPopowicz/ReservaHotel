@@ -9,13 +9,11 @@ namespace ReservaHotel.Controllers
     [Route("[controller]")]
     public class PacoteController : ControllerBase
     {
-        private readonly ILogger<PacoteController> _logger;
         private readonly BDContext _dbContext;
 
         public PacoteController(BDContext dbContext, ILogger<PacoteController> logger)
         {
             _dbContext = dbContext;
-            _logger = logger;
         }
 
         [HttpPost]

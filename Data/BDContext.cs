@@ -8,21 +8,25 @@ namespace ReservaHotel.Data
         public DbSet<Cliente>? Clientes { get; set; }
         public DbSet<Servico>? Servicos { get; set; }
         public DbSet<Pacote>? Pacotes { get; set; }
-        public DbSet<Quarto> Quartos {get; set;}
+        public DbSet<Quarto>? Quartos {get; set;}
+        public DbSet<Reserva>? Reservas {get; set;}
+        public DbSet<Voucher>? Vouchers {get; set;}
+        public DbSet<Hotel>? Hotels {get; set;}
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("DataSource=hotel.db;Cache=Shared");
+            optionsBuilder.UseSqlite("Data Source=hotel.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Pacote>()
-            //     .HasMany(p => p.Servicos);
-
-                modelBuilder.Entity<Servico>()
-                .HasMany(s => s.Pacotes);
-
+            modelBuilder.Entity<Pacote>().HasMany(p => p.Servicos);
+            modelBuilder.Entity<Reserva>().HasOne(p => p.Quarto);
+            modelBuilder.Entity<Reserva>().HasOne(p => p.Hotel);
+            modelBuilder.Entity<Reserva>().HasOne(p => p.Pacote);
+            modelBuilder.Entity<Reserva>().HasOne(p => p.Cliente);
+            modelBuilder.Entity<Reserva>().HasOne(p => p.Voucher);
 
         }
     }

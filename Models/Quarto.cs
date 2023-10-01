@@ -8,13 +8,13 @@ namespace ReservaHotel.Models;
 public class Quarto
 {
     [Key]
-    public int nroQuarto {get; set;}
+    public int NroQuarto {get; set;}
 
     [Required]
-    public int nroHospedes {get; set;}
+    public int NroHospedes {get; set;}
 
     [Required]
-    public float valor {get; set;}
+    public float Valor {get; set;}
 
     public Quarto()
     {
@@ -22,9 +22,9 @@ public class Quarto
 
     public Quarto(int nroQuarto, int nroHospedes, float valor)
     {
-        this.nroQuarto = nroQuarto;
-        this.nroHospedes = nroHospedes;
-        this.valor = valor;
+        this.NroQuarto = nroQuarto;
+        this.NroHospedes = nroHospedes;
+        this.Valor = valor;
     }
 }
 

@@ -13,9 +13,6 @@ public class Servico
 
     public float ValorServico { get; set; }
 
-    public virtual ICollection<Pacote> Pacotes { get; set; }
-
-
     public Servico()
     {
     }

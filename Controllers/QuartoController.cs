@@ -11,13 +11,11 @@ namespace ReservaHotel.Controllers;
 
 public class QuartoController : ControllerBase
 {
-   private readonly ILogger<QuartoController> _logger;
     private readonly BDContext _dbContext;
 
-    public QuartoController(BDContext dbContext, ILogger<QuartoController> logger)
+    public QuartoController(BDContext dbContext)
     {
         _dbContext = dbContext;
-        _logger = logger;
     }
 
     [HttpPost]
@@ -44,7 +42,7 @@ public class QuartoController : ControllerBase
     }
 
     [HttpGet]
-    [Route("buscar/{id}")]
+    [Route("buscar/{nroQuarto}")]
     public async Task<ActionResult<Quarto>> Buscar(int nroQuarto)
     {
         if (_dbContext is null) return NotFound();
@@ -64,13 +62,13 @@ public class QuartoController : ControllerBase
         if (_dbContext.Quartos is null) return NotFound();
 
         // Busque o quarto existente no banco de dados pelo numero do quarto
-        var quartoExistente = await _dbContext.Quartos.FindAsync(quarto.nroQuarto);
+        var quartoExistente = await _dbContext.Quartos.FindAsync(quarto.NroQuarto);
 
         if (quarto is null) return NotFound();
 
         // Aplique as alterações no quarto existente
-        quartoExistente.nroHospedes = quarto.nroHospedes;
-        quartoExistente.valor = quarto.valor;
+        quartoExistente.NroHospedes = quarto.NroHospedes;
+        quartoExistente.Valor = quarto.Valor;
 
         // Salve as alterações no banco de dados
         await _dbContext.SaveChangesAsync();
@@ -79,13 +77,13 @@ public class QuartoController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("excluir/{id}")]
-    public async Task<ActionResult> Excluir(int nroQuarto)
+    [Route("excluir/{nroQuarto}")]
+    public async Task<ActionResult> Excluir(int NroQuarto)
     {
         if (_dbContext is null) return NotFound();
-        if (_dbContext.Servicos is null) return NotFound();
+        if (_dbContext.Quartos is null) return NotFound();
 
-        var quartoBusca = await _dbContext.Quartos.FindAsync(nroQuarto);
+        var quartoBusca = await _dbContext.Quartos.FindAsync(NroQuarto);
         if (quartoBusca is null) return NotFound();
 
         _dbContext.Remove(quartoBusca);

@@ -9,14 +9,12 @@ namespace ReservaHotel.Controllers;
 [Route("[controller]")]
 public class ServicoController : ControllerBase
 {
-
-    private readonly ILogger<ServicoController> _logger;
     private readonly BDContext _dbContext;
 
-    public ServicoController(BDContext dbContext, ILogger<ServicoController> logger)
+    public ServicoController(BDContext dbContext)
     {
         _dbContext = dbContext;
-        _logger = logger;
+
     }
 
 
@@ -34,10 +32,6 @@ public class ServicoController : ControllerBase
 
         return Created("", servico);
     }
-
-
-
-
 
     [HttpGet]
     [Route("listar")]
