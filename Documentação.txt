@@ -1,4 +1,5 @@
 # Documentação do Programa ReservaHotel
+# Assim como no projeto em si (métodos e solução de problemas) o GPT também nos auxiliou com a criação da documentação
 
 ## Visão Geral
 O programa ReservaHotel é uma aplicação de gerenciamento de reservas em hotéis. Ele permite que os usuários cadastrem, consultem, atualizem e excluam informações sobre hotéis, quartos, serviços, reservas, vouchers, prêmios e recibos.
