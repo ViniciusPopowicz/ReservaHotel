@@ -1,6 +1,3 @@
 # ReservaHotel
 
-1- criar mais duas classes(premio, nota fiscal) - 	OK
-2- testar tudo
-3- criar as regra de negocio pros valores
-4- verificar se esta atualizando os valores conforme atualização do pacote/reserva
+Projeto para manipulação de dados e das classes construídas no banco de dados, com a aplicação real de uma reserva de hotel, quarto, contratação de pacote de serviços adicionais bem como a documentação da reserva feita.
