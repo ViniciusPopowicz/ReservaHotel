@@ -6030,19 +6030,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vinicius\\.nuget\\packages\\": {}
+    "C:\\Users\\Aluno\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vinicius\\ReservaHotel\\ReservaHotel.csproj",
+      "projectUniqueName": "C:\\Users\\Aluno\\Desktop\\aula1311\\API_Reserva\\ReservaHotel\\ReservaHotel.csproj",
       "projectName": "ReservaHotel",
-      "projectPath": "C:\\Users\\Vinicius\\ReservaHotel\\ReservaHotel.csproj",
-      "packagesPath": "C:\\Users\\Vinicius\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vinicius\\ReservaHotel\\obj\\",
+      "projectPath": "C:\\Users\\Aluno\\Desktop\\aula1311\\API_Reserva\\ReservaHotel\\ReservaHotel.csproj",
+      "packagesPath": "C:\\Users\\Aluno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Aluno\\Desktop\\aula1311\\API_Reserva\\ReservaHotel\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Vinicius\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Aluno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6050,6 +6055,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
